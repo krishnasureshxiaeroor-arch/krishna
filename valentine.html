@@ -5,6 +5,13 @@
   <title>Be My Valentine 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
     body {
       margin: 0;
       height: 100vh;
@@ -107,3 +114,89 @@
   </script>
 </body>
 </html>
+
+    }
+
+    h1 {
+      color: #d6336c;
+      font-size: 7vw;
+      margin-bottom: 5vw;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4vw;
+      justify-content: center;
+    }
+
+    button {
+      padding: 3vw 6vw;
+      font-size: 4vw;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      min-width: 100px;
+    }
+
+    .yes {
+      background: #d6336c;
+      color: white;
+    }
+
+    .yes:hover {
+      background: #b82b5c;
+    }
+
+    .no {
+      background: #b0b0b0;
+      color: white;
+      position: absolute;
+    }
+
+    @media (min-width: 600px) {
+      h1 { font-size: 36px; margin-bottom: 40px; }
+      button { font-size: 18px; padding: 15px 40px; }
+      .buttons { gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Will you be my Valentine? 💘</h1>
+    <div class="buttons">
+      <button class="yes" onclick="window.location.href='yes.html'">Yes</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+
+    // Circle movement parameters
+    let angle = 0;
+    const radiusX = window.innerWidth/2 - 80; // horizontal radius
+    const radiusY = window.innerHeight/2 - 80; // vertical radius
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    function moveInCircle() {
+      angle += 0.05; // speed of rotation
+      const x = centerX + radiusX * Math.cos(angle) - noBtn.offsetWidth/2;
+      const y = centerY + radiusY * Math.sin(angle) - noBtn.offsetHeight/2;
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
+    setInterval(moveInCircle, 20); // update every 20ms
+
+    // Set initial position
+    noBtn.style.left = `${centerX + radiusX - noBtn.offsetWidth/2}px`;
+    noBtn.style.top = `${centerY - noBtn.offsetHeight/2}px`;
+  </script>
+</body>
+</html>
+
