@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Congratulations 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 100px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      z-index: 5;
+    }
+
+    h1 {
+      color: #d6336c;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .heart, .flower {
+      position: absolute;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+    }
+
+    .heart {
+      font-size: 28px;
+      animation-duration: 2.5s;
+    }
+
+    .flower {
+      font-size: 30px;
+      animation-duration: 3.5s;
+    }
+
+    .text-pop {
+      position: absolute;
+      font-size: 22px;
+      font-weight: bold;
+      color: #d6336c;
+      animation: textPop 2.5s ease-out forwards;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(214,51,108,0.5);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.6);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes textPop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      40% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: gold;
+      animation: explode 1.2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes explode {
+      from {
+        transform: scale(0);
+        opacity: 1;
+      }
+      to {
+        transform: scale(14);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="card">
+    <h1>Congratulations Diviii 💖</h1>
+    <p>For being my Valentine 🌹🥰</p>
+  </div>
+
+  <script>
+    /* 🎶 Start music on first click (browser rule) */
+    const bgm = document.getElementById("bgm");
+    document.addEventListener("click", () => {
+      bgm.play();
+    }, { once: true });
+
+    function createHeart(x) {
+      const el = document.createElement("div");
+      el.className = "heart";
+      el.innerHTML = "❤️";
+      el.style.left = x + "px";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 2500);
+    }
+
+    function createFlower(x) {
+      const el = document.createElement("div");
+      el.className = "flower";
+      el.innerHTML = "🌸";
+      el.style.left = x + "px";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3500);
+    }
+
+    function createText(x, y) {
+      const txt = document.createElement("div");
+      txt.className = "text-pop";
+      txt.innerText = "I love you 💖";
+      txt.style.left = x + "px";
+      txt.style.top = y + "px";
+      document.body.appendChild(txt);
+      setTimeout(() => txt.remove(), 2500);
+    }
+
+    function createFirework() {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight * 0.6;
+
+      const fw = document.createElement("div");
+      fw.className = "firework";
+      fw.style.left = x + "px";
+      fw.style.top = y + "px";
+      fw.style.background = `hsl(${Math.random() * 360},100%,60%)`;
+      document.body.appendChild(fw);
+
+      // 💥 On crack → hearts + flowers + text
+      setTimeout(() => {
+        for (let i = 0; i < 6; i++) createHeart(x);
+        for (let i = 0; i < 4; i++) createFlower(x);
+        createText(x - 120, y);
+      }, 400);
+
+      setTimeout(() => fw.remove(), 1200);
+    }
+
+    // 🎆 Instant fireworks on load
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createFirework, i * 300);
+    }
+
+    // 🔁 Continuous fireworks
+    setInterval(createFirework, 1000);
+  </script>
+
+</body>
+</html>
